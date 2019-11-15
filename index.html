@@ -1,50 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Rock Paper Scissors</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <script>
+      let playerWins = 0;
+      let playerTies = 0;
+      let playerLosses = 0;
+      const gameArray = ["rock", "paper", "scissors"];
+      let playerChoice;
+      let computerChoice;
+      let validInput;
 
-    let playerWins = 0;
-    let playerTies = 0;
-    let playerLosses = 0;
-    const gameArray = ["r", "p", "s"];
-    let playerChoice = "r";
-    let computerChoice = "r";
+      while (true) {
+        validInput = false;
 
-    while (true) {
+        while (validInput === false) {
+          playerChoice = prompt(
+            "Choose rock, paper, or scissors."
+          ).toLowerCase();
 
-        playerChoice = prompt("Choose r, p, or s.");
+          if (
+            playerChoice === "rock" ||
+            playerChoice === "paper" ||
+            playerChoice === "scissors"
+          ) {
+            validInput = true;
+          } else {
+            alert(
+              "Error: Input is invalid. Must type rock, paper, or scissors."
+            );
+          }
+        }
 
         computerChoice = Math.floor(Math.random() * 3);
 
-        alert("The computer chose " + gameArray[computerChoice]);
+        alert(`The computer chose ${gameArray[computerChoice]}.`);
 
         if (playerChoice === gameArray[computerChoice]) {
-
-            playerTies ++;
-            alert("You have tied " + playerTies + " times.");
-
-        } else if ((playerChoice === "r" && gameArray[computerChoice] === "s") || (playerChoice === "p" && gameArray[computerChoice] === "r") || (playerChoice === "s" && gameArray[computerChoice] === "p")) {
-
-            playerWins++;
-            alert("You have won " + playerWins + " times.");
-
+          playerTies++;
+          alert(`You have tied ${playerTies} times.`);
+        } else if (
+          (playerChoice === "rock" &&
+            gameArray[computerChoice] === "scissors") ||
+          (playerChoice === "paper" && gameArray[computerChoice] === "rock") ||
+          (playerChoice === "scissors" && gameArray[computerChoice] === "paper")
+        ) {
+          playerWins++;
+          alert(`You have won ${playerWins} times.`);
         } else {
-
-            playerLosses++;
-            alert("You have lost " + playerLosses + " times.");
-
+          playerLosses++;
+          alert(`You have lost ${playerLosses} times.`);
         }
-
-    }
-
+      }
     </script>
-
-</body>
+  </body>
 </html>
